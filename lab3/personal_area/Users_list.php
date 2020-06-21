@@ -2,7 +2,9 @@
 session_start();
 include "../database/db.php";
 include "../classes/class_user_list.php";
-
+if (!isset($_SESSION['id'])) {
+    exit(header('location:../auth/login.php'));
+}
 $users = mysqli_query($db_phpmyadmin->connect(), "SELECT * FROM `users`");
 $adminUserList = new UserList();
 $i = 0;
